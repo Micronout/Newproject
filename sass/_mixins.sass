@@ -1,0 +1,74 @@
+// @each $i in alerts, calendar, setting
+//  .ic--#{$i}
+//      +s(ic--#{&i})
+
+// $list: adam john wynn mason kuroir
+// =ic--img
+// @each $i in alerts, calendar, setting
+//  .ic--#{$ic}
+//      background: image-url("#{$ic--}.png") no-repeat
+// =author-images
+// 	@each $author in $list
+// 		.photo-#{$author}
+// 			background: image-url("avatars/#{$author}.png") no-repeat
+// .author-bio
+// 	+author-images
+// .ic--bio
+//   @include .ic--images
+
+=box
+	+box-sizing(border-box)
+
+// Обрезание текста с 3 точиями
+=text-overflow
+	overflow: hidden
+	-ms-text-overflow: ellipsis
+	text-overflow: ellipsis
+	white-space: nowrap
+
+=clr
+	&:after
+		content: " "
+		display: table
+		clear: both
+	*zoom: 1
+=font-smoothing($val: antialiased)
+	-webkit-font-smoothing: $val
+	-moz-font-smoothing: $val
+	-ms-font-smoothing: $val
+	-o-font-smoothing: $val
+
+//shortcut
+=pic($name)
+	background: url("../img/#{$name}") no-repeat 0 0
+	//background-image: inline-image("#{$name}",'image/png')
+	+image-size("img/#{$name}") 
+
+// Checkbox
+=check($width, $height, $png)   
+	position: absolute
+	clip: rect(0, 0, 0, 0)
+	&:checked + label:before 
+		background-position: 0 (-$height)
+	& + label 
+		cursor: pointer
+		&:before 
+			content: " "
+			display: inline-block
+			position: relative
+			top: 2px
+			height: $height
+			width: $width
+			margin-right: 10px
+			background: url(../img/#{$png}.png) no-repeat center top
+
+=png($name)    
+	background: url("../img/#{$name}.png") no-repeat 0 0
+	//background-image: inline-image("#{$name}.png",'image/png')
+	+image-size("img/#{$name}.png")
+=jpg($name)
+	background: url("../img/#{$name}.jpg") no-repeat 0 0
+	//background-image: inline-image("#{$name}.jpg",'image/jpg')
+	+image-size("img/#{$name}.jpg")
+
+	
